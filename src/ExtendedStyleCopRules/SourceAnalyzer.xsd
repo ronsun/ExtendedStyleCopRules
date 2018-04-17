@@ -1,9 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="SourceAnalyzer"
-    targetNamespace="http://tempuri.org/SourceAnalyzer.xsd"
+    targetNamespace="https://github.com/ronsun/ExtendedStyleCopRules/blob/master/src/ExtendedStyleCopRules/SourceAnalyzer.xsd"
     elementFormDefault="qualified"
-    xmlns="http://tempuri.org/SourceAnalyzer.xsd"
-    xmlns:mstns="http://tempuri.org/SourceAnalyzer.xsd"
+    xmlns:this="https://github.com/ronsun/ExtendedStyleCopRules/blob/master/src/ExtendedStyleCopRules/SourceAnalyzer.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
+  <xs:element name="SourceAnalyzer">
+    <xs:complexType>
+      <xs:all>
+        <!--Description-->
+        <xs:element name="Description" type="xs:string" minOccurs="1" maxOccurs="1" />
+
+        <!--Properties-->
+        <xs:element name="Properties">
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="BooleanProperty" type="this:SimplePropertyType" />
+              <xs:element name="IntegerProperty" type="this:SimplePropertyType" />
+              <xs:element name="StringProperty" type="this:SimplePropertyType" />
+              <xs:element name="CollectionProperty" type="this:CollectionPropertyType" />
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+
+        <!--Rules-->
+        <xs:element name="Rules">
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="RuleGroup" type="this:RuleGroupType" maxOccurs="unbounded"/>
+              <xs:element name="Rule" type="this:RuleType" maxOccurs="unbounded"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="SimplePropertyType">
+    <xs:attribute name="Name" type="xs:string" use="required" />
+    <xs:attribute name="DefaultValue" type="this:boolString" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="CollectionPropertyType">
+    <xs:attribute name="Name" type="xs:string" use="required" />
+    <xs:attribute name="Aggregate" type="this:boolString" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="RuleGroupType">
+    <xs:sequence>
+      <xs:element name="Rule" type="this:RuleType" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="RuleType">
+    <xs:all>
+      <xs:element name="Context" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="Name" type="xs:string" use="required" />
+    <xs:attribute name="CheckId" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[a-zA-Z]{2}[][0-9]{4}" />
+          <!--TODO: not start with "SA"-->
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Warning" type="this:boolString" />
+    <xs:attribute name="DisabledByDefault" type="this:boolString" />
+    <xs:attribute name="CanDisable" type="this:boolString" />
+  </xs:complexType>
+
+  <!--true/false, ignore case-->
+  <xs:simpleType name="boolString">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(?i)(true)|(?i)(false)" />
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
