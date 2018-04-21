@@ -1,15 +1,10 @@
 ﻿using StyleCop;
 using StyleCop.CSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ExtendedStyleCopRules
+namespace ExtendedStyleCopRules.NamingRules
 {
     [SourceAnalyzer(typeof(CsParser))]
-    public class ExtendedStyleCopRules : SourceAnalyzer
+    public class ExtendedNamingRules : SourceAnalyzer
     {
         public override void AnalyzeDocument(CodeDocument document)
         {
