@@ -1,5 +1,6 @@
 ﻿using StyleCop;
 using StyleCop.CSharp;
+using System.Collections.Generic;
 
 namespace ExtendedStyleCopRules.NamingRules
 {
@@ -26,9 +27,20 @@ namespace ExtendedStyleCopRules.NamingRules
                 }
             }
 
-            foreach (var child in element.ChildElements)
+            var typesContainFiled = new List<ElementType>()
             {
-                CheckNamingRule(child);
+                ElementType.Class,
+                ElementType.Namespace,
+                ElementType.Root,
+                ElementType.Struct
+            };
+
+            if (typesContainFiled.Contains(element.ElementType))
+            {
+                foreach (var child in element.ChildElements)
+                {
+                    CheckNamingRule(child);
+                }
             }
         }
     }
