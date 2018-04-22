@@ -11,7 +11,10 @@ namespace ExtendedStyleCopRules.NamingRules
         {
             CsDocument csdocument = (CsDocument)document;
 
-            csdocument.WalkDocument(new CodeWalkerElementVisitor<object>(VisitElement));
+            if (csdocument.RootElement != null && !csdocument.RootElement.Generated)
+            {
+                csdocument.WalkDocument(new CodeWalkerElementVisitor<object>(VisitElement));
+            }
         }
 
         private bool VisitElement(CsElement element, CsElement parentElement, object context)
