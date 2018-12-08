@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExtendedStyleCopRules
 {
-    internal enum Rules
+    public enum Rules
     {
         PrivateFieldNamesMustStartWithUnderscore
     }
