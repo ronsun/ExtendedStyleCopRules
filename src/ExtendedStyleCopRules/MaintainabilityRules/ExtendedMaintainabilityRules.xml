@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SourceAnalyzer Name="Extend Maintainability Rules" xmlns="https://github.com/ronsun/ExtendedStyleCopRules">
+  <Description>
+    Extended maintainability rules.
+  </Description>
+  <Rules>
+    <RuleGroup Name="Access Modifiers">
+      <Rule Name="ConstantMustRestrictedInAssembly" CheckId="EA6400">
+        <Context>
+          Visibility of constant must restricted in current assembly.
+          Use static readonly field instead if open to external assembly.
+        </Context>
+        <Description>Validates that visibility of a constant is restricted in current assembly.</Description>
+      </Rule>
+    </RuleGroup>
+  </Rules>
+</SourceAnalyzer>

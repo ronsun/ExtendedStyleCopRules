@@ -93,7 +93,7 @@
 
   <xs:complexType name="RuleType">
     <xs:all>
-      <xs:element name="Context" minOccurs="1" maxOccurs="1" type="this:notWhitespaceString" />
+      <xs:element name="Context" type="xs:string" minOccurs="1" maxOccurs="1" />
       <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="Name" use="required">
@@ -131,13 +131,4 @@
       <xs:minLength value="1" />
     </xs:restriction>
   </xs:simpleType>
-
-  <!--exist 1 or more non-whitespace characters =>
-      whitespace * (0..n) + not whitespace * (1..n) + any * (0..n)-->
-  <xs:simpleType name="notWhitespaceString">
-    <xs:restriction base="xs:string">
-      <xs:pattern value ="\s*[^\s]+.*" />
-    </xs:restriction>
-  </xs:simpleType>
-
 </xs:schema>

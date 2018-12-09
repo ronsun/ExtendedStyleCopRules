@@ -8,6 +8,7 @@ namespace ExtendedStyleCopRules
 {
     public enum Rules
     {
-        PrivateFieldNamesMustStartWithUnderscore
+        PrivateFieldNamesMustStartWithUnderscore,
+        ConstantMustRestrictedInAssembly
     }
 }

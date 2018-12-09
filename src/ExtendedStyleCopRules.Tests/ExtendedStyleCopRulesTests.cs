@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using ExtendedStyleCopRules.MaintainabilityRules;
+using ExtendedStyleCopRules.NamingRules;
 using ExtendedStyleCopRules.Tests.Models;
+using ExtendedStyleCopRules.Tests.NUnitTestCaseSources;
 using FluentAssertions;
 using NUnit.Framework;
 using StyleCop;
@@ -58,27 +61,9 @@ namespace ExtendedStyleCopRules.Tests
             var expectedValidationResult = new StyleCopViolations() { };
             return new List<object[]>()
             {
-                EA1301TestResource()
+                EA1301.GetTestResources(),
+                EA6400.GetTestResources()
             };
-        }
-
-        private static object[] EA1301TestResource()
-        {
-            string checkId = "EA1301";
-            var expectedValidationResult = new StyleCopViolations()
-            {
-                ViolationItems = new List<StyleCopViolations.Violation>()
-                {
-                   new StyleCopViolations.Violation()
-                   {
-                       LineNumber = "7",
-                       RuleNamespace = "ExtendedStyleCopRules.NamingRules.ExtendedNamingRules",
-                       Rule = Rules.PrivateFieldNamesMustStartWithUnderscore.ToString(),
-                       RuleId = checkId
-                   }
-                }
-            };
-            return new object[] { checkId, expectedValidationResult };
         }
     }
 }
