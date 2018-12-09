@@ -21,6 +21,12 @@ namespace ExtendedStyleCopRules.Tests
             string ruleSettingPath = Path.Combine(Locations.TestDataDirectory, checkId, $"{checkId}.StyleCop");
             string codePath = Path.Combine(Locations.TestDataDirectory, checkId, $"{checkId}.cs");
 
+            CodeProject project = new CodeProject(
+                checkId.GetHashCode(),
+                Locations.BaseDirectory,
+                new Configuration(null),
+                0);
+
             StyleCopConsole console = new StyleCopConsole(
                 ruleSettingPath,
                 false,
@@ -28,12 +34,6 @@ namespace ExtendedStyleCopRules.Tests
                 Locations.AddInDirectory,
                 false,
                 Locations.BaseDirectory);
-
-            CodeProject project = new CodeProject(
-                checkId.GetHashCode(),
-                Locations.BaseDirectory,
-                new Configuration(null),
-                0);
 
             console.Core.Environment.AddSourceCode(project, codePath, null);
 
