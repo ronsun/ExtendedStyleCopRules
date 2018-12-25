@@ -85,6 +85,11 @@
   </xs:complexType>
 
   <xs:complexType name="RuleGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[Group of rules, group will displayed like a folder in StyleCop Settings window.]]>
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="Rule" type="this:RuleType" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -92,6 +97,11 @@
   </xs:complexType>
 
   <xs:complexType name="RuleType">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[Single rule.]]>
+      </xs:documentation>
+    </xs:annotation>
     <xs:all>
       <xs:element name="Context" type="xs:string" minOccurs="1" maxOccurs="1" />
       <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1" />
