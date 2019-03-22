@@ -5,7 +5,7 @@
   </Description>
   <Rules>
     <Rule Name="PrivateFieldNamesMustStartWithUnderscore" CheckId="EA1301">
-      <Context>Private filed name must start with Underscore</Context>
+      <Context>Private filed name must start with underscore</Context>
       <Description>Validates that names of private field must start with an underscore.</Description>
     </Rule>
   </Rules>

@@ -7,10 +7,10 @@
     <RuleGroup Name="Access Modifiers">
       <Rule Name="ConstantMustRestrictedInAssembly" CheckId="EA6400">
         <Context>
-          Visibility of constant must restricted in current assembly.
+          Accessibility of constant must restricted in current assembly.
           Use static readonly field instead if open to external assembly.
         </Context>
-        <Description>Validates that visibility of a constant is restricted in current assembly.</Description>
+        <Description>Validates accessibility of a constant should under current assembly.</Description>
       </Rule>
     </RuleGroup>
   </Rules>
