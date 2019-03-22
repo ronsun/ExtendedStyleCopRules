@@ -18,11 +18,18 @@ namespace ExtendedStyleCopRules.MaintainabilityRules
 
         private bool VisitElement(CsElement element, CsElement parentElement, object context)
         {
+            ValidateConstantAccessibility(element);
+
+            return true;
+        }
+
+        private void ValidateConstantAccessibility(CsElement element)
+        {
             // not target element
             if (element.Generated ||
                 element.ElementType != ElementType.Field)
             {
-                return true;
+                return;
             }
 
             // the ProtectedAndInternal case seems not applied to AccessModifier
@@ -30,11 +37,10 @@ namespace ExtendedStyleCopRules.MaintainabilityRules
                 element.AccessModifier == AccessModifierType.Internal ||
                 element.ActualAccess == AccessModifierType.ProtectedAndInternal)
             {
-                return true;
+                return;
             }
 
             AddViolation(element, Rules.ConstantMustRestrictedInAssembly);
-            return true;
         }
     }
 }

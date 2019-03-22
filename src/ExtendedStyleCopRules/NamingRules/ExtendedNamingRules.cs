@@ -18,20 +18,25 @@ namespace ExtendedStyleCopRules.NamingRules
 
         private bool VisitElement(CsElement element, CsElement parentElement, object context)
         {
+            ValidatePrivateFieldPrefix(element);
+
+            return true;
+        }
+
+        private void ValidatePrivateFieldPrefix(CsElement element)
+        {
             // not target element
             if (element.Generated ||
                 element.ElementType != ElementType.Field ||
                 element.AccessModifier != AccessModifierType.Private)
             {
-                return true;
+                return;
             }
 
             if (!element.Declaration.Name.StartsWith("_"))
             {
                 AddViolation(element, Rules.PrivateFieldNamesMustStartWithUnderscore);
             }
-
-            return true;
         }
     }
 }
